@@ -60,6 +60,26 @@ Then plug back in your Pioneer and run the same command a second time.  There wi
 ```console
 rosrun rosaria RosAria _port:=/dev/ttyS0
 ```    
+## PS4 Controller
+Verify first that the "joy" package is  installed in your ROS system. It should already be there as it is part of the desktop install but to confirm run the following
+
+```console
+sudo apt-get install ros-noetic-joy
+```
+Now in your catkin workspace src folder run the following:
+
+```console
+git clone https://github.com/solbach/ps4-ros.git
+```
+
+The instructions on its use are [here](https://github.com/solbach/ps4-ros) and the readme. After following those to get the PS4 controller working, you then need to launch the following node:
+
+```console
+rosrun pioneer_3dx_utilities ps4_controller_node.py
+```
+
+Now have fun children.
+
 
 ## RP Lidar Install
 
