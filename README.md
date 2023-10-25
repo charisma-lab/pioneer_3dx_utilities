@@ -28,7 +28,7 @@ git clone https://github.com/amor-ros-pkg/rosaria.git
 Next, we will diverage from the above instructions and install the following:
 
 ```console
-sudo dpkg -i libaria_2.9.4+ubuntu12_i386.deb
+sudo apt-get install libaria-dev
 ```
 
 Then `catkin_make` in your workspace directory.
