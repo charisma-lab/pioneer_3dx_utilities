@@ -1,0 +1,14 @@
+<launch>
+  <!-- Load the URDF into the ROS Parameter Server -->
+  <param name="robot_description"
+      command="$(find xacro)/xacro '$(find pioneer_description)/urdf/pioneer3dx.xacro'" />
+  <!--param name="robot_description"
+	 command="$(find xacro)/xacro '$(find amr_robots_description)/urdf/pioneer3dx.urdf.xacro'"/-->
+
+  <!-- Send joint values -->
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+  </node>
+
+  <!-- Combine joint values -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+</launch>
