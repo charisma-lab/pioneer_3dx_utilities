@@ -3,8 +3,8 @@
 	<!-- Robot sensor transforms -->
   <node pkg="pioneer_3dx_utilities" type="pioneer3dx_odometry_publisher" name="pioneer3dx_odometry_publisher"/>
   
-	<!-- RPLidar -->
-	<include file="$(find pioneer_3dx_utilities)/launch/rplidar_aliased.launch"/>
+  <!-- RPLidar -->
+  <include file="$(find pioneer_3dx_utilities)/launch/rplidar_aliased.launch"/>
 	
   <!-- Frame transforms -->
   <node pkg="pioneer_3dx_utilities" type="rp_laser_tf_broadcaster" name="rp_laser_tf_broadcaster"/>

@@ -95,3 +95,37 @@ To test, use the following launch and then view it in Rviz
 ```console
 roslaunch pioneer_3dx_utilities pioneer_sensors.launch
 ```
+
+
+## Navigation
+
+Navigation is a complex process and so I would recommend understanding [this](https://wiki.ros.org/nav_core). The basic idea is that there is a global planner who creates a global trajectory.  They give small parts of the global trajectory to the local planner. The local planner uses sensor data to ensure it is on a collision free pathway.  What is complicated is localization and mapping. For basic planning you need to install the following pacakges:
+
+```console
+sudo apt-get install ros-noetic-move-base*
+sudo apt-get install ros-noetic-amcl*
+```
+
+The first package is the basic move-base pacakge that is linked to above. This gives your ros system a bunch of different msg types and stuff. Several configuration files are used to set up the global and local parameters full described [here](https://wiki.ros.org/navigation/Tutorials/RobotSetup). The following files configure the navigation stack:
+- config/costmap_common_params.yaml
+- config/base_local_planner_params.yaml
+- config/local_costmap_params.yaml
+- config/global_costmap_params.yaml
+These files are currently configured to reasonable values. The full navigation pipeline can be started with the following command:
+
+```console
+roslaunch pioneer_3dx_utilities nav.launch
+```
+
+This will load the robot discription, start the lidar, create the appropriate frames for the odometry and sensing. It will then launch amcl (see below) and set up the basic move_base pipeline. You have no reason to change these files for any reason. Create a new repo, or create your own configuration files and nav.launch file.
+
+The second package is amcl it stands for [Adaptive Monte Carlo Localization](https://wiki.ros.org/amcl). This is a localization algorithm. You will give it a lidar topic and odometry information and it will tell you the most likely position of the robot in the map. It also requires a map, this can be generated offline using [this](https://wiki.ros.org/slam_gmapping/Tutorials/MappingFromLoggedData) method, or can be done online with gmapping (SLAM), as shown below.
+
+### SLAM
+TBD
+
+
+
+
+
+
