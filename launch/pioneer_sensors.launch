@@ -1,13 +1,17 @@
 <launch>
-
+  
+  <arg name="lidar-port" default="/dev/ttyUSB1" />
 	<!-- Robot sensor transforms -->
   <node pkg="pioneer_3dx_utilities" type="pioneer3dx_odometry_publisher" name="pioneer3dx_odometry_publisher"/>
   
   <!-- RPLidar -->
-  <include file="$(find pioneer_3dx_utilities)/launch/rplidar_aliased.launch"/>
+  <include file="$(find pioneer_3dx_utilities)/launch/rplidar_aliased.launch">
+    <arg name="lidar-port" value="$(arg lidar-port)" />
+  </include>
+  
 	
   <!-- Frame transforms -->
-  <node pkg="pioneer_3dx_utilities" type="rp_laser_tf_broadcaster" name="rp_laser_tf_broadcaster"/>
-  <node pkg="pioneer_3dx_utilities" type="rplidar_laser_publisher" name="rplidar_laser_publisher"/>
+  <!--node pkg="pioneer_3dx_utilities" type="rp_laser_tf_broadcaster" name="rp_laser_tf_broadcaster"/>
+  <node pkg="pioneer_3dx_utilities" type="rplidar_laser_publisher" name="rplidar_laser_publisher"/-->
   
 </launch>

@@ -39,7 +39,7 @@ def joyCB(joy_msg):
     
     
 
-pub = rospy.Publisher('/RosAria/cmd_vel', Twist, queue_size=10)
+pub = rospy.Publisher('/rosaria/cmd_vel', Twist, queue_size=10)
 sub = rospy.Subscriber('/joy', Joy, joyCB)        
     
     

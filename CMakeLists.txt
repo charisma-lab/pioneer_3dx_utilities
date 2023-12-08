@@ -22,6 +22,9 @@ catkin_install_python(PROGRAMS scripts/ps4_controller_node.py
   )
 
 
+catkin_install_python(PROGRAMS scripts/explorer_goal.py
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+  )
 #add_executable(pioneer3dx_tf_broadcaster src/pioneer3dx_tf_broadcaster.cpp)
 #target_link_libraries(pioneer3dx_tf_broadcaster ${catkin_LIBRARIES})
 #add_dependencies(pioneer3dx_tf_broadcaster ${catkin_EXPORTED_TARGETS})

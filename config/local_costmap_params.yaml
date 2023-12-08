@@ -1,10 +1,20 @@
 local_costmap:
-  global_frame: /rosaria/pose
+  plugins: 
+    - {name: static_layer,       type: "costmap_2d::StaticLayer"}
+    - {name: obstacles,        type: "costmap_2d::VoxelLayer"}
+    - {name: inflation_layer, type: "costmap_2d::InflationLayer"}
+  publish_frequency: 1.0
+  obstacles:
+    observation_sources: base_scan
+    base_scan: {data_type: LaserScan, sensor_frame: laser, clearing: true, marking: true, topic: rplidar/scan}
+  global_frame: map
   robot_base_frame: base_link
-  update_frequency: 5.0
-  publish_frequency: 2.0
-  static_map: false
+  update_frequency: 1.0
+  publish_frequency: 0.5
   rolling_window: true
-  width: 6.0
-  height: 6.0
+  width: 2.0
+  height: 2.0
   resolution: 0.05
+  static_map: false0
+  inflation_radius: 0.25
+  transform_tolerance: 5.0

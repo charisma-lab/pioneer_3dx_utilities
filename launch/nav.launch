@@ -1,13 +1,17 @@
 <launch>
+  <arg name="use-map" default="false"/>
 
-   <master auto="start"/>
- <!-- Run the map server --> 
- <!--node name="map_server" pkg="map_server" type="map_server" args="$(find my_map_package)/my_map.pgm my_map_resolution"/-->
-
- <!--include file="$(find pioneer_3dx_utilities)/launch/pioneer_nav_config.launch"/-->
-
- <!--- Run AMCL --> 
+  <group if="$(arg use-map)">
+    <!-- all of this is untested -->
+    <!--- Run AMCL to localize robot in custom map --> 
     <include file="$(find amcl)/examples/amcl_diff.launch" />
+    <!-- Run the map server FILL IN THIS STUFF --> 
+    <node name="map_server" pkg="map_server" type="map_server" args="$(find my_map_package)/my_map.pgm my_map_resolution"/>
+  </group>
+  
+
+ <include file="$(find pioneer_3dx_utilities)/launch/pioneer_nav_config.launch"/>
+
 
    <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
     <rosparam file="$(find pioneer_3dx_utilities)/config/costmap_common_params.yaml" command="load" ns="global_costmap" /> 
@@ -15,6 +19,7 @@
     <rosparam file="$(find pioneer_3dx_utilities)/config/local_costmap_params.yaml" command="load" />
     <rosparam file="$(find pioneer_3dx_utilities)/config/global_costmap_params.yaml" command="load" /> 
     <rosparam file="$(find pioneer_3dx_utilities)/config/base_local_planner_params.yaml" command="load" />
+    <remap from="cmd_vel" to="rosaria/cmd_vel"/>
  </node>
 
 </launch> 

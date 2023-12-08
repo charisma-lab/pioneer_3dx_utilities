@@ -1,6 +1,9 @@
 <launch>
+
+  <arg name="lidar-port" default="/dev/ttyUSB1" />
+  
   <node name="rplidarNode"          pkg="rplidar_ros"  type="rplidarNode" output="screen" ns='rplidar'>
-    <param name="serial_port"         type="string" value="/dev/ttyUSB1"/>
+    <param name="serial_port"         type="string" value="$(arg lidar-port)"/>
     <param name="serial_baudrate"     type="int"    value="115200"/>
     <!--param name='serial_baudrate' type='int' value='256000'/-->
     <param name="frame_id"            type="string" value="laser"/>

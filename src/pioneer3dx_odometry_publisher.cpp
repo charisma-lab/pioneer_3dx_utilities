@@ -60,7 +60,7 @@ int main(int argc, char **argv)
   ros::NodeHandle nHandle2 ; 
   
   pub = nHandle2.advertise<nav_msgs::Odometry>("odom", 50) ;
-  ros::Subscriber sub = nHandle1.subscribe("/RosAria/pose", 10, &poseCallback) ;
+  ros::Subscriber sub = nHandle1.subscribe("/rosaria/pose", 10, &poseCallback) ;
   
   ros::spin() ;
   return 0 ;
